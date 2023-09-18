@@ -18,3 +18,6 @@ if video_elements:
     random_video.click()
     time.sleep(3)  # încărcarea paginii videoclipului
 
+# Așteptam o anumită perioadă, apoi închidem browser-ul
+time.sleep(120)  # timpul in care browser ul sta deschis
+driver.quit()
