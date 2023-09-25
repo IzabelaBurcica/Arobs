@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from moviepy.editor import VideoFileClip, AudioFileClip
 from AudioRecorder import record_audio
 from VideoRecorder import record_video
-from calculate_sound_level import calculate_sound_level
+
 
 # Numele fișierului de ieșire pentru sunet
 audio_filename = "audio.wav"
