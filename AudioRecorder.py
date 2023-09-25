@@ -38,7 +38,6 @@ def record_audio(audio_filename, record_seconds, barrier):
                           frames_per_buffer=chunk)
     audio_frames = []  #inițializează o lista pentru a stoca cadrele audio capturate
 
-    # Calculează numărul de frame-uri necesare pentru înregistrarea dorită
     frames_to_record = int(sample_rate * record_seconds)
 
     print("Înregistrează sunetul...")
