@@ -4,6 +4,7 @@ from numpy import random
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+
 # Configuram Selenium și deschidem un browser Chrome
 driver = webdriver.Chrome()
 driver.get("https://www.youtube.com")
@@ -22,8 +23,8 @@ if video_elements:
     player = driver.find_element(By.CSS_SELECTOR, ".ytp-play-button")
     player.click()
 else:
-    print("Nu s-au găsit videoclipuri pe pagina principală.")
-
+    print("Nu s-a gasit videoclip")
 # Așteptam o anumită perioadă, apoi închidem browser-ul
-time.sleep(120)  # timpul in care browser ul sta deschis
+time.sleep(20)  # timpul in care browser ul sta deschis
 driver.quit()
+
