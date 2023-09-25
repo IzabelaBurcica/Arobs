@@ -14,10 +14,6 @@ driver.get("https://www.youtube.com")
 # Așteptam să se încarce pagina principală a YouTube ului
 time.sleep(3)
 
-# pornim cele 2 inregistrari
-record_video("testvideo.avi", 13)
-record_audio("testaudio.wav", 13)
-
 # Alegem un videoclip aleatoriu de pe pagina principală
 video_elements = driver.find_elements(By.CSS_SELECTOR, "a#video-title")
 if video_elements:
