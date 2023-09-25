@@ -1,23 +1,24 @@
 # audio_recorder.py
-from datetime import datetime
-
 import pyaudio
 import wave
-import numpy as np
 
-# Setări pentru înregistrarea audio
-chunk = 1024
-FORMAT = pyaudio.paInt32
+
+# Setari pentru inregistrarea audio
+chunk = 1024  # dimensiunea unui "chunk" de date audio care va fi înregistrat la fiecare iterație
+FORMAT = pyaudio.paInt32  # dormatul pentru datele audio
 channels = 2
-sample_rate = 44100
+sample_rate = 44100 #frecventa de esantionare
 
-def record_audio(audio_filename, record_seconds):
+#definim functia de inregistrare aufio avand ca parametrii numele fisierului audio asa cum va fi salvat, nr de secunde ale sunetului si un parametru bariera
+
+def record_audio(audio_filename, record_seconds, barrier):
+    #asteapta ca toate thread-urile sa se sincronizeze pentru ca inregistrarea video si audio sa porneasca simultan
+    barrier.wait()
+    #print("A INCEPUT THREAD UL AUDIO" ,  datetime.now())
+    p = pyaudio.PyAudio()  # inițializeaza obiectul PyAudio pentru a lucra cu inregistrarea audio
 
 
-    print("A INCEPUT THREAD UL AUDIO" ,  datetime.now())
-    p = pyaudio.PyAudio()
-
-    # Identifică dispozitivul audio pentru sunetul ecranului
+    #identifica dispozitivul audio pentru sunetul ecranului
     device_index = None
     for i in range(p.get_device_count()):
         device_info = p.get_device_info_by_index(i)
@@ -35,7 +36,7 @@ def record_audio(audio_filename, record_seconds):
                           input=True,
                           input_device_index=device_index,
                           frames_per_buffer=chunk)
-    audio_frames = []
+    audio_frames = []  #inițializează o lista pentru a stoca cadrele audio capturate
 
     # Calculează numărul de frame-uri necesare pentru înregistrarea dorită
     frames_to_record = int(sample_rate * record_seconds)
@@ -53,8 +54,8 @@ def record_audio(audio_filename, record_seconds):
 
     print("Înregistrare sunet finalizată.")
 
-    audio_stream.stop_stream()
-    audio_stream.close()
+    audio_stream.stop_stream() #opreste fluxul audio
+    audio_stream.close() #inchide fluxul audio
     p.terminate()
 
     wf = wave.open(audio_filename, "wb")
@@ -63,6 +64,3 @@ def record_audio(audio_filename, record_seconds):
     wf.setframerate(sample_rate)
     wf.writeframes(b"".join(audio_frames))
     wf.close()
-
-if __name__ == "__main__":
-    record_audio("test.wav",13)
