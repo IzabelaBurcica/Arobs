@@ -1,4 +1,3 @@
-import threading
 import time
 import cv2
 import numpy as np
@@ -7,8 +6,8 @@ from datetime import datetime, timedelta
 
 frame_rate = 10.0
 
-def record_video(video_filename, record_seconds):
-    
+def record_video(video_filename, record_seconds, barrier):
+    barrier.wait()
     #print("A INCEPUT THREAD UL VIDEO",  datetime.now())
     screen_width, screen_height = pyautogui.size()
     fourcc = cv2.VideoWriter_fourcc(*"XVID")
@@ -32,5 +31,3 @@ def record_video(video_filename, record_seconds):
 
     video_out.release()
 
-if __name__ == "__main__":
-    record_video("test.avi", 13)
