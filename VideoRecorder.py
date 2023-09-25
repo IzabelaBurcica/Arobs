@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 
 frame_rate = 10.0
 
-def record_video(video_filename, record_seconds, barrier):
-    barrier.wait()
+def record_video(video_filename, record_seconds):
+
     #print("A INCEPUT THREAD UL VIDEO",  datetime.now())
     screen_width, screen_height = pyautogui.size()
     fourcc = cv2.VideoWriter_fourcc(*"XVID")
@@ -31,3 +31,5 @@ def record_video(video_filename, record_seconds, barrier):
 
     video_out.release()
 
+if __name__ == "__main__":
+    record_video("test.avi", 13)
