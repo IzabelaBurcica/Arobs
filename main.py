@@ -19,7 +19,7 @@ final_video_filename = "final_video.mp4"
 record_seconds = 20
 
 def record_audio_and_video():
-
+    try:
 
         barrier = threading.Barrier(2)
 
@@ -53,7 +53,7 @@ def record_audio_and_video():
         audio_thread.start()
         video_thread.start()
 
-        logging.info("Incep inregistrarea audio si video")
+        logging.info("Incep înregistrarea audio si video")
 
         # Așteaptăm ca cele două fire de execuție să se încheie
         audio_thread.join()
@@ -81,9 +81,15 @@ def record_audio_and_video():
         # Închidem browser-ul
         driver.quit()
 
-
-        logging.error(f"A intervenit o eroare")
+    except Exception as e:
+        logging.error(f"A intervenit o eroare: {str(e)}")
 
 if __name__ == "__main__":
     record_audio_and_video()
+    output_file_path = 'sound_level.txt'  # Numele fișierului de ieșire pentru nivelul sunetului
 
+    try:
+        extract_sound_level(audio_filename, output_file_path)
+        logging.info("Calcul nivel de sunet efectuat cu succes")
+    except Exception as e:
+        logging.error(f"A intervenit o eroare în calcularea nivelului de sunet: {str(e)}")
