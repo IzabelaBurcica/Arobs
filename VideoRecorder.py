@@ -1,45 +1,41 @@
-
 import cv2
 import numpy as np
 import pyautogui
-from datetime import datetime, timedelta
+import pygetwindow as gw
 
-#numarul de cadre pe secunda la care se va inregistra videoclipul
+# numărul de cadre pe secundă la care se va înregistra videoclipul
 frame_rate = 10.0
 
-#definim functia de inregistrare a desktopului avand ca parametrii numele fisierului video asa cum va fi salvat, nr de secunde ale video ului si un parametru bariera
+# definim funcția de înregistrare a desktopului având ca parametrii numele fișierului video așa cum va fi salvat, nr de secunde ale video-ului și un parametru barieră
 def record_video(video_filename, record_seconds, barrier):
-    #asteapta ca toate thread-urile sa se sincronizeze pentru ca inregistrarea video si audio sa porneasca simultan
-    barrier.wait()
+    try:
+        # așteaptă ca toate thread-urile să se sincronizeze pentru ca înregistrarea video să pornească simultan
+        barrier.wait()
 
-    #testam sa vedem daca cele doua inregistrari pornesc in acelasi timp
-    #print("A INCEPUT THREAD UL VIDEO",  datetime.now())
+        # Găsește fereastra browser-ului (poate necesita nume personalizat pentru fereastra browser-ului)
+        browser_window = gw.getWindowsWithTitle("YouTube")[0]
 
-    #definim dimensiunile ecranului prin utilizarea functiei size()
-    screen_width, screen_height = pyautogui.size()
-    #definim un cod cu patru caractere pentru codec-ul de compresie a videoclipului
-    fourcc = cv2.VideoWriter_fourcc(*"XVID")
-    #iintializam obiectul video_out
-    video_out = cv2.VideoWriter(video_filename, fourcc, frame_rate, (screen_width, screen_height))
+        # Obține coordonatele și dimensiunile ferestrei browser-ului
+        left, top, width, height = browser_window.left, browser_window.top, browser_window.width, browser_window.height
 
-    print("Înregistrează ecranul...")
-    start_time = datetime.now()
-    #calculam momentul cand inregistrarea trebuie sa se opreasca adugand o perioada de timp
-    end_time = start_time + timedelta(seconds=record_seconds)
-    #print(end_time)
+        # definim un cod cu patru caractere pentru codec-ul de compresie a videoclipului
+        fourcc = cv2.VideoWriter_fourcc(*"XVID")
+        # inițializăm obiectul video_out
+        video_out = cv2.VideoWriter(video_filename, fourcc, frame_rate, (width, height))
 
-    # Calculează numărul de cadre necesare
-    num_frames = int(frame_rate * record_seconds)
+        print("Înregistrează ecranul browser-ului...")
 
-    for _ in range(num_frames):
-        #captam cadre din videoclip folosind functia screenshot()
-        screenshot = pyautogui.screenshot()
-        #capturile de ecran le stocam intr-o matrice
-        frame = np.array(screenshot)
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        video_out.write(frame)
+        num_frames = int(frame_rate * record_seconds)
 
-    print("Înregistrare ecran finalizată.")
-    #eliberam resursele
-    video_out.release()
+        for _ in range(num_frames):
+            # Capturăm ecranul doar pentru fereastra browser-ului
+            screenshot = pyautogui.screenshot(region=(left, top, width, height))
+            frame = np.array(screenshot)
+            frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            video_out.write(frame)
 
+        print("Înregistrare ecran browser finalizată.")
+        # eliberăm resursele
+        video_out.release()
+    except Exception as e:
+        print(f"A intervenit o eroare: {str(e)}")
