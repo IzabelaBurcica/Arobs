@@ -10,4 +10,4 @@ pentru browser-ul Google Chrome(asa cum se poate observa in imaginea de mai jos)
 Fisierul calculate_sound_level.py contine functia extract_sound_level, care determina nivelul sunetului in db, din inregistarea audio, si il salveaza intr-un fisier .txt
 
 
-![image](https://github.com/IzabelaBurcica/Arobs/assets/106831283/a7ebb692-01e0-48e7-923f-d70d72f6b5f6)
+![image](https://github.com/IzabelaBurcica/Arobs/assets/106831283/a7ebb692-01e0-48e7-923f-d70d72f6b5f6=250x250)
