@@ -9,3 +9,4 @@ Fisierul AudioRecorder.py contine functia record_audio, care inregistreaza sunet
 pentru browser-ul Google Chrome(asa cum se poate observa in imaginea de mai jos), astfel inregistram doar sunetul furnizat de pagina de YouTube indiferent daca in paralel se aud si alte sunete pe desktop.
 Fisierul calculate_sound_level.py contine functia extract_sound_level, care determina nivelul sunetului in db, din inregistarea audio, si il salveaza intr-un fisier .txt
 
+![image](https://github.com/IzabelaBurcica/Arobs/assets/106831283/c96c3c88-7380-49f0-b9ac-13b662e9cb27)
