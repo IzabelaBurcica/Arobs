@@ -1,0 +1,6 @@
+selenium
+numpy
+moviepy
+pyaudio
+opencv-python
+pyautogui
