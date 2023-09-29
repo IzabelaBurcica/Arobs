@@ -12,5 +12,4 @@ pentru browser-ul Google Chrome(asa cum se poate observa in imaginea de mai jos)
 ### Testare
 Pentru a vedea functionalitatea aplicatiei este nevoie sa se descarce cele 4 fisiere de tip .py, sa se instaleze bibliotecile necesare, si sa se ruleze fisierul main.py. Instalarea bibliotecilor se poate realiza descarcand fisierul requirements.txt si utilizarea comenzii ***pip install -r requirements.txt*** .
 
-
-![image](https://github.com/IzabelaBurcica/Arobs/assets/106831283/c96c3c88-7380-49f0-b9ac-13b662e9cb27)
+![image](https://github.com/IzabelaBurcica/Arobs/assets/106831283/fe7c193b-1aa0-4e9c-ab4d-a372ff88b252)
