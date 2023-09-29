@@ -1,7 +1,7 @@
 ### Mediul de dezvoltare si functionalitate
 
 Aplicatia a fost realizata utilizand ca mediu de dezvoltare PyCharm 2023.2.1 si are ca scop inregistrarea audio si video a unei ferestre de pe YouTube.
-Aceasta implica realizarea a 4 fisiere de tip .py si anume un program principal unde vor fi testate functiile implementate.
+Aceasta implica realizarea a 4 fisiere de tip .py.
 ### Implementare
 * Fisierul **main.py** reprezinta scriptul principal unde sunt testate celelalte functii implemnetate. Fisierul presupune definirea unei functii record_audio_and_video care este responsabila de inregistrarea audio si video simultan de pe un site web (YouTube) si de combinarea lor într-un fisier video final. Functia creeaza o bariera de sincronizare pentru a porni inregistrarile audio si video simultan pentru a evita decalaje. Apoi, deschide un browser Chrome pentru a reda un videoclip YouTube, initiaza doua fire de executie pentru inregistrarea audio si video, asteapta incheierea acestora, si prelucreaza inregistrarile. In cele din urma, suprapune sunetul pe videoclip, salveaza rezultatul si inchide resursele, inclusiv browser-ul Selenium.
 * Fisierul **VideoRecorder.py** contine functia *record_video*, care inregistreaza doar browser-ul deschis cu ajutorul bibliotecii Selenium.Ea utilizeaza o bariera de sincronizare pentru a asigura inceperea inregistrarii simultan cu inregistrarea audio. Se initializeaza un obiect video, apoi, se captureaza si se inregistreaza cadrele video in functie de durata specificata. La final, resursele sunt eliberate prin inchiderea obiectului video, iar inregistrarea video este salvata in fisierul specificat.
