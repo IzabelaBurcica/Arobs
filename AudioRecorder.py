@@ -14,8 +14,6 @@ def record_audio(audio_filename, record_seconds, barrier):
 
 
     # Identifică dispozitivul audio pentru sunetul ecranului
-    # In cazul acesta se va inregistra doar sunetul furnizat de browser. Am ales un dispozitiv audio diferit pentru browser,
-    # fata de cel utilizat de sistem pentru a permite inregistrarea sunetului doar de pe pagina de YouTube
     device_index = None
     for i in range(p.get_device_count()):
         device_info = p.get_device_info_by_index(i)
